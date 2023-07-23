@@ -1,0 +1,18 @@
+name: 'CI'
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+
+jobs:
+  CI:
+    runs-on: 'ubuntu-latest'
+    steps:
+    - uses: 'joncloud/download-install-action@main'
+      with:
+        checksum-url: 'https://releases.hashicorp.com/terraform/1.5.3/terraform_1.5.3_SHA256SUMS'
+        checksum-entry: 'terraform_1.5.3_linux_amd64.zip'
+        archive-url: 'https://releases.hashicorp.com/terraform/1.5.3/terraform_1.5.3_linux_amd64.zip'
+        archive-entries: 'terraform'
+
+    - run: 'terraform -version'
